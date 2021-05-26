@@ -1,0 +1,7 @@
+alias minikube-open-port='_minikube-open-port() { ssh -i ~/.minikube/machines/minikube/id_rsa docker@$(minikube ip) -fN -L \*:$1:0.0.0.0:$2 }; _minikube-open-port'
+alias port='_port(){ lsof -nP -i4TCP:$1 | grep LISTEN }; _port'
+
+# Open the port from another terminal after starting Minikube and after the VM is up
+$ minikube-open-port 8443 8443
+# Verify
+$ port 8443
